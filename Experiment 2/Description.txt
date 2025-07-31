@@ -1,0 +1,35 @@
+Experiment Explanation:
+
+This experiment demonstrates how to build a simple, responsive banking user interface using HTML, CSS, and JavaScript. The goal is to help you understand the basics of web development, including page structure, styling, and interactivity.
+
+How it works:
+- The web page displays a card in the center showing the current balance.
+- There are two buttons: "Deposit" and "Withdraw".
+- When you click "Deposit", $100 is added to the balance.
+- When you click "Withdraw", $100 is subtracted from the balance, but the balance cannot go below $0.
+- The design uses CSS for layout, colors, and responsiveness, ensuring it looks good on all devices.
+
+Code Explanation:
+
+1. **HTML (Experiment1.html):**
+   - Sets up the structure of the page.
+   - Links to the external CSS file (`style.css`).
+   - Contains a container with the balance display and two buttons.
+   - Includes a small JavaScript function to update the balance when buttons are clicked.
+
+2. **CSS (style.css):**
+   - Styles the body to center the card both vertically and horizontally.
+   - Styles the container with a white background, rounded corners, and a shadow.
+   - Styles the balance text and the buttons with appropriate colors and spacing.
+   - Makes the layout responsive for different screen sizes.
+
+3. **JavaScript (inside Experiment1.html):**
+   - Keeps track of the balance.
+   - Updates the balance display when a button is clicked.
+   - Prevents the balance from going below $0.
+
+This experiment helps you practice:
+- Creating a clean and centered layout.
+- Using external CSS for styling.
+- Adding simple interactivity with JavaScript.
+- Making your UI responsive and user friendly.

@@ -1,0 +1,36 @@
+body {
+  background: #f0f4f8;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+.container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  text-align: center;
+  width: 320px;
+}
+.balance {
+  color: #388e3c;
+  font-size: 2rem;
+  margin-bottom: 25px;
+}
+.btn {
+  width: 100%;
+  padding: 15px 0;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 7px;
+  font-size: 1.1rem;
+  color: #fff;
+  cursor: pointer;
+}
+.deposit {
+  background: #43a047;
+}
+.withdraw {
+  background: #e53935;
