@@ -1,0 +1,27 @@
+header { 
+    border: 1px solid #0c0c0c ;
+    background-color: green; 
+    grid-column : 1 / span 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nav{
+     border: 1px solid #ccc;
+     background-color: grey;  
+}
+main { 
+    border: 1px solid #ccc; 
+}
+footer { 
+    border: 1px solid #0f0f0f;
+    background-color: green; 
+    grid-column : 1 / span 2;
+ }
+.dashboard {
+    display: grid;
+    grid-template-columns: 120px auto;
+    grid-template-rows: 90px auto 50px;
+    height: 100vh;
+    
+}
