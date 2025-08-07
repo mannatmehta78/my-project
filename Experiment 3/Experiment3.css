@@ -1,27 +1,51 @@
+:root{
+    --bg-header: green;
+    --bg-nav: grey;
+    --bg-footer: green;
+    --bg-main:white;
+    --bg-text: black;
+
+}
+#toggle-menu:checked ~ .dashboard {
+    --bg-header: rgb(77, 76, 76);
+    --bg-nav: rgb(49, 49, 49);
+    --bg-footer: rgb(82, 81, 81);
+    --bg-main:rgb(172, 169, 169);
+    --bg-text: black;
+
+}
+#toggle-menu {
+    display: none;
+}
 header { 
     border: 1px solid #0c0c0c ;
-    background-color: green; 
-    grid-column : 1 / span 2;
+     background-color: var(--bg-header);
+     grid-column : 1 / span 2; 
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 nav{
      border: 1px solid #ccc;
-     background-color: grey;  
+     background-color: var(--bg-nav);  
 }
 main { 
     border: 1px solid #ccc; 
+    background-color: var(--bg-main); 
 }
 footer { 
     border: 1px solid #0f0f0f;
-    background-color: green; 
-    grid-column : 1 / span 2;
+    background-color: var(--bg-footer); 
+  grid-column : 1 / span 2; 
+  text-align:center;
  }
 .dashboard {
     display: grid;
     grid-template-columns: 120px auto;
-    grid-template-rows: 90px auto 50px;
+     grid-template-rows: 90px auto 50px; 
     height: 100vh;
     
 }
+/* :root{--bg-header:green;
+ */
