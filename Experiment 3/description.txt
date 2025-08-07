@@ -1,0 +1,97 @@
+HTML CODE DESCRIPTION :
+____________________
+
+The HTML file creates the structure of the admin dashboard. Here's what each part does:
+
+1. <input type="checkbox" id="toggle-menu">
+This checkbox is used to switch between Light Mode and Dark Mode.
+
+It's hidden using CSS but when checked, it changes the theme using custom variables.
+
+2. <div class="dashboard">
+This is the main container for the whole layout.
+
+Inside this, we have 4 sections: header, nav, main, and footer.
+
+3. <header>
+Shows the title "Admin Dashboard".
+
+Contains a label ("dark mode") which acts like a toggle for the checkbox.
+
+4. <nav>
+Contains the menu items: Home, User, and Settings.
+
+These are written as <li> (list items). Ideally, they should be inside <ul> and use <a> for proper navigation.
+
+5. <main>
+The main content area of the dashboard.
+
+Welcomes the admin and gives space for charts or reports.
+
+6. <footer>
+Displays the footer text: © 2025 Admin Panel.
+
+CSS CODE DESCRIPTION:
+_____________________
+
+The CSS adds styling, layout, and the dark mode feature.
+
+ 1. CSS Variables (:root)
+Variables like --bg-header, --bg-nav, --bg-main, etc. are defined for colors.
+
+They make it easy to switch themes dynamically.
+
+ 2. Dark Mode Toggle
+css
+Copy
+Edit
+#toggle-menu:checked ~ .dashboard {
+   // dark mode values here
+}
+When the checkbox is checked, these new variable values are applied.
+
+This changes the theme from light to dark.
+
+ 3. Layout with Grid
+css
+Copy
+Edit
+.dashboard {
+  display: grid;
+  grid-template-columns: 120px auto;
+  grid-template-rows: 90px auto 50px;
+}
+The layout uses CSS Grid to organize:
+
+120px sidebar (nav)
+
+Remaining space for main
+
+Rows for header (90px), content (auto), and footer (50px)
+
+4. Styling Each Section
+header, nav, main, and footer are all styled using the variables.
+
+Flexbox used in header to space title and label.
+
+main has white background by default.
+
+footer and header have same green (or dark) background.
+
+5. Hiding the Checkbox
+css
+Copy
+Edit
+#toggle-menu {
+  display: none;
+}
+We hide the checkbox because we only want the label to be clickable.
+
+Learning Outcomes
+Understood how to build a dashboard layout using HTML & CSS.
+
+Learnt to use CSS Grid for layout management.
+
+Applied CSS variables to manage themes easily.
+
+Implemented a Dark Mode toggle using only CSS — no JavaScript required.
