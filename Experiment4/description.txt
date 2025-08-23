@@ -1,0 +1,36 @@
+In this experiment, we built a webpage that shows a live character counter for a textarea. 
+The goal is that whenever the user types something, the number of characters is displayed instantly without refreshing the page.
+
+In the HTML part, we created a main container using <div class="counter-container">. 
+Inside this container, we wrote a title with <div class="counter-title">Live Character Counter</div> to show what the feature is about. 
+After that, we added a textarea using <textarea id="myTextarea" placeholder="Start typing..."></textarea>. 
+The important thing here is the id="myTextarea", because later in JavaScript we will use this ID to get the typed value. 
+Just below the textarea, we wrote “Characters:” and kept an empty <span id="charCount"></span>. 
+This empty span is where the character count will appear dynamically.
+
+In the CSS, we styled this container so that it looks neat. 
+For example, in .counter-container we gave a border, some padding, margin to center it, and a background color. 
+The .counter-title was given a slightly larger font size and some space below it. 
+For the textarea, we used width: 100% so it stretches across the container, gave it a minimum height of 80px, 
+and set the font size to look normal. This way, the page looks clean and user-friendly.
+
+The real working happens in the JavaScript. 
+We started with window.addEventListener('DOMContentLoaded', function() { ... }) 
+to make sure the code runs only after the HTML is loaded. 
+Then, we got the textarea using document.getElementById('myTextarea') and the span using document.getElementById('charCount').
+
+Next, we created a function called handler. 
+Inside this function, we first stored whatever the user typed by writing var value = textarea.value. 
+Then, to handle the Enter key, we wrote var newlineCount = (value.match(/\n/g) || []).length; 
+which basically counts how many new lines are there in the text. 
+Finally, we updated the counter using charCount.textContent = value.length - newlineCount;. 
+This line means the length of the text minus the new lines is shown inside the span.
+
+At the end, we connected this function with the textarea by writing 
+textarea.addEventListener('input', handler). 
+This line is very important because the “input” event is triggered every time the user types, deletes, or pastes something. 
+That is why our counter updates instantly without reloading the page.
+
+So finally, when the page runs, the textarea is empty at the beginning and the counter is blank.
+ As soon as we type something, the counter increases, and if we delete, the counter decreases. 
+ This simple experiment shows how HTML gives us structure, CSS improves the design, and JavaScript makes the page interactive by updating content in real-time.
