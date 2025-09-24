@@ -1,0 +1,15 @@
+{
+  "name": "experiment-12",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "This project implements a simple **seat booking system** using **Node.js + Express**.  \r It ensures that seat locking and booking are handled safely with **mutex-based concurrency control**.  \r A lock expires automatically after a configurable timeout (default: **60 seconds**).",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
