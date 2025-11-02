@@ -1,0 +1,92 @@
+name: Experiment 26 CI
+
+on:
+  push:
+    branches: [ main ]
+    # Only run when experiment-26 or this workflow changes
+    paths:
+      - 'CloudDeployment-Project/experiment-26/**'
+      - '.github/workflows/main.yml'
+
+permissions:
+  contents: read
+  pages: write    # needed for optional GitHub Pages deployment
+  id-token: write # needed for optional GitHub Pages deployment
+
+jobs:
+  build-and-test:
+    name: Build & Test (experiment-26)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: CloudDeployment-Project/experiment-26
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: CloudDeployment-Project/experiment-26/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      # CRA/Jest can hang in watch mode; force non-watch CI run
+      - name: Run tests
+        run: npm test -- --watchAll=false
+
+      - name: Build app
+        run: npm run build
+
+      - name: Upload production build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: experiment-26-build
+          path: CloudDeployment-Project/experiment-26/build
+
+      - name: Upload Pages artifact (for optional deploy)
+        if: ${{ vars.DEPLOY_TO_PAGES == 'true' }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: CloudDeployment-Project/experiment-26/build
+
+  deploy:
+    name: Deploy to GitHub Pages (optional)
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    # Only run when repository variable DEPLOY_TO_PAGES is set to 'true'
+    if: ${{ vars.DEPLOY_TO_PAGES == 'true' }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+# Optional: Netlify or S3 deployment (examples)
+# - Netlify (requires NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID repo secrets)
+#   - name: Deploy to Netlify
+#     uses: netlify/actions/cli@v4
+#     with:
+#       args: deploy --dir=CloudDeployment-Project/experiment-26/build --prod --message "CI deploy"
+#     env:
+#       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+#       NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+#
+# - AWS S3 (requires AWS creds and BUCKET env/secret)
+#   - name: Sync to S3
+#     run: aws s3 sync CloudDeployment-Project/experiment-26/build s3://$BUCKET/ --delete
+#     env:
+#       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#       AWS_REGION: ${{ secrets.AWS_REGION }}
+#       BUCKET: ${{ secrets.S3_BUCKET }}
